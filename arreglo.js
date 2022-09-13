@@ -14,7 +14,6 @@ function menuOperaciones(){
     console.log('6.- IMPRIMIR todo el arreglo.')
     console.log('7.- IMPRIMIR suma y promedio de elementos del arreglo.')
     console.log('8.- SALIR')
-    console.log("\n")
 
 }
 
@@ -35,7 +34,7 @@ switch (numeroOpcion){
         buscarElemento();
         break;
     case '5':
-        imprimirConIndice();
+        imprimirElemento();
         break;
     case '6':
         recorreArreglo();
@@ -69,25 +68,30 @@ function eliminarElemento(){
 //----------------------------------------------------------------------------------------------------
 // 3.- EDITA UN ELEMENTO DEL ARREGLO.
 function editarElemento(){
-    let posicion = input('Dame la posicion del elemento: ')
-    let nuevoValor = input('Dame el nuevo valor del elemento: ')
-    myArray.splice(posicion, posicion+1, nuevoValor);
-    console.log(myArray);
+    let posicionEdit = require("readline-sync")
+    let pos = posicionEdit.questionInt('Dame la posicion del elemento: ')
+    let nuevoValor = require("readline-sync")
+    let nuevo = nuevoValor.questionInt('Dame el nuevo valor: ')
+    myArray.splice(pos, pos+1, nuevo);
+    return console.log(myArray);
 }
 
 //----------------------------------------------------------------------------------------------------
 // 4.- BUSCA UN ELEMENTO DADO SU INDICE.
 function buscarElemento(){
-    let valorBusqueda = input('Dame el valor del elemento que buscas: ')
-    console.log(myArray.indexOf(valorBusqueda));
+    let valorBusqueda = require("readline-sync")
+    let valor = valorBusqueda.questionInt('Dame el valor del elemento que buscas: ')
+    return console.log(myArray.indexOf(valor));
 }
 
 //----------------------------------------------------------------------------------------------------
 // 5.- IMPRIMIR DADO UN INDICE.
 // Validar si no existe el indice.
 // modificar el "1" por "i".
-function imprimirConIndice(i){
-    console.log('El elemento en el Indice:', i + ' ' + 'es:', myArray[i]);
+function imprimirElemento(){
+    let valorBusqueda = require("readline-sync")
+    let valor = valorBusqueda.questionInt('Dame el valor del elemento que buscas: ')
+    return console.log(myArray.indexOf(valor));
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -104,13 +108,6 @@ function sumaPromedio(){
     const valorInicial = 0;
     const suma = myArray.reduce((previousValue, currentValue) => previousValue + currentValue, valorInicial);
     const promedio = suma / myArray.length;
-    console.log(suma)
-    console.log(promedio)
-}
-
-
-
-
-function menu(){
-    
+    console.log('La suma es: '+ suma)
+    console.log('El promedio es: '+ promedio)
 }
